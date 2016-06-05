@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.3
+// @version        1.4
 // ==/UserScript==
 
 var numIframesReplaced = 0;
@@ -80,31 +80,3 @@ function init() {
 if (document.querySelector('meta[http-equiv="X-Wix-Meta-Site-Id"]')) {
     init();
 }
-
-// unsafeWindow.__restaurants_orders_userscript = {
-// 	disable() {
-// 		localStorage.setItem('__restaurants_orders_userscript_disabled', true);
-// 		init();
-// 	},
-
-// 	enable() {
-// 		localStorage.removeItem('__restaurants_orders_userscript_disabled');
-// 		init();
-// 	}
-// }
-
-// function removeEventListener() {
-// 	document.body.removeEventListener('DOMSubtreeModified', onDOMSubtreeModified, false);
-// }
-
-// function init() {
-// 	if (localStorage.getItem('__restaurants_orders_userscript_disabled')) {
-// 		removeEventListener();
-// 		setHeaderText('restaurants-orders userscript disabled :(', 'grey');
-// 	} else {
-// 		addEventListener();
-// 		setHeaderText('WixRestaurants userscript');
-// 	}
-// }
-
-// init();
