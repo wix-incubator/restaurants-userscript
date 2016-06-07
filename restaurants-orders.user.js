@@ -78,6 +78,6 @@ function init() {
 }
 
 if (location.hostname.match('.*wix\.com') ||
-    document.querySelector('meta[http-equiv="X-Wix-Meta-Site-Id"]')) {
-    init();
+	document.querySelector('meta[http-equiv="X-Wix-Meta-Site-Id"]')) {
+	init();
 }
