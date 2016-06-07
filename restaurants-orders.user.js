@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.4
+// @version        1.5
 // ==/UserScript==
 
 var numIframesReplaced = 0;
@@ -45,7 +45,7 @@ function setLogMessage(text, color) {
 }
 
 function updateLogMessage() {
-	setLogMessage(`WixRestaurants userscript (iframes: ${numIframesReplaced}, isBeta: ${isBeta})`);
+	setLogMessage(`WixRestaurants userscript v${GM_info.script.version} (iframes: ${numIframesReplaced}, isBeta: ${isBeta})`);
 }
 
 function onDOMSubtreeModified() {
@@ -77,6 +77,7 @@ function init() {
 	updateLogMessage();
 }
 
-if (document.querySelector('meta[http-equiv="X-Wix-Meta-Site-Id"]')) {
+if (location.hostname.match('.*wix\.com') ||
+    document.querySelector('meta[http-equiv="X-Wix-Meta-Site-Id"]')) {
     init();
 }
