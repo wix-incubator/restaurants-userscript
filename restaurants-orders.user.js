@@ -45,7 +45,7 @@ function setLogMessage(text, color) {
 }
 
 function updateLogMessage() {
-	setLogMessage(`WixRestaurants userscript v${GM_info.script.version} (iframes: ${numIframesReplaced}, isBeta: ${isBeta})`);
+	setLogMessage(`WixRestaurants userscript v${GM_info.script.version} (iframes: ${numIframesReplaced})`);
 }
 
 function onDOMSubtreeModified() {
