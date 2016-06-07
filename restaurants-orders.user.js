@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.5
+// @version        1.6
 // ==/UserScript==
 
 var numIframesReplaced = 0;
