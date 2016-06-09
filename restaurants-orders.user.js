@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.6
+// @version        1.7
 // ==/UserScript==
 
 var numIframesReplaced = 0;
-var isBeta = window.localStorage.getItem('isBeta') === 'true';
 
 function setLogMessage(text, color) {
 	color = color || 'black';
