@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.7
+// @version        1.8
 // ==/UserScript==
 
 var numIframesReplaced = 0;
@@ -9,13 +9,13 @@ var numIframesReplaced = 0;
 function setLogMessage(text, color) {
 	color = color || 'black';
 
-	var prevStyle = document.querySelector('style[data-userscript-id=restaurants-orders]');
+	var prevStyle = document.querySelector('style[data-userscript-id=wix-restaurants]');
 	if (prevStyle) {
 		prevStyle.remove();
 	}
 
 	var style = document.createElement('style');
-	style.setAttribute('data-userscript-id', 'restaurants-orders');
+	style.setAttribute('data-userscript-id', 'wix-restaurants');
 	style.type = 'text/css';
 	style.appendChild(document.createTextNode(`
 		body:before {
@@ -59,7 +59,7 @@ function onDOMSubtreeModified() {
 
 		numIframesReplaced++;
 
-		console.log('%crestaurants-order userscript updated iframe location',
+		console.log('%cWixRestaurants userscript updated iframe location',
 			'background: #222; color: yellow; padding: 0px 3px');
 
 		updateLogMessage();
