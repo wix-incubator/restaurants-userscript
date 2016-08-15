@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.8
+// @version        1.9
 // ==/UserScript==
 
 var numIframesReplaced = 0;
@@ -17,45 +17,54 @@ function setLogMessage(text, color) {
 	var style = document.createElement('style');
 	style.setAttribute('data-userscript-id', 'wix-restaurants');
 	style.type = 'text/css';
-	style.appendChild(document.createTextNode(`
-		body:before {
-			content: "${text}";
-			position: fixed;
-			top: 2px;
-			left: 2px;
-			font: bold 10px/1em menlo,monospace;
-			background: white;
-			color: ${color};
-			z-index: 1000000;
-			padding: 7px;
-		}
-	`));
+	style.appendChild(document.createTextNode(
+		'body:before {' +
+			'content: "' + text + '";' +
+			'position: fixed;' +
+			'top: 2px;' +
+			'left: 2px;' +
+			'font: bold 10px/1em menlo,monospace;' +
+			'background: white;' +
+			'color: ' + color + ';' +
+			'z-index: 1000000;' +
+			'padding: 7px;' +
+		'}'
+	));
 
 	setTimeout(function () {
-		style.appendChild(document.createTextNode(`
-			body:before {
-				opacity: 0.4;
-				transition: opacity 1s ease-out 5s;
-			}
-		`));
+		style.appendChild(document.createTextNode(
+			'body:before {' +
+				'opacity: 0.4;' +
+				'transition: opacity 1s ease-out 5s;' +
+			'}'
+		));
 	}, 10);
 
 	document.head.appendChild(style);
 }
 
 function updateLogMessage() {
-	setLogMessage(`WixRestaurants userscript v${GM_info.script.version} (iframes: ${numIframesReplaced})`);
+	setLogMessage('WixRestaurants userscript v' + GM_info.script.version + ' (iframes: ' + numIframesReplaced + ')');
 }
 
 function onDOMSubtreeModified() {
-	var iframe = [].slice.call(document.querySelectorAll('iframe'))
-		.find(function (iframe) {
-			return iframe.src.startsWith('https://restaurants.wix.com');
+	var iframe;
+	[].slice.call(document.querySelectorAll('iframe'))
+		.forEach(function (currentIframe) {
+			if (currentIframe.src.indexOf('https://restaurants.wix.com') === 0) {
+				iframe = currentIframe;
+			}
 		});
 
 	if (iframe) {
-		iframe.src = iframe.src.replace('https://restaurants.wix.com',
-			'http://alpha.openrest.com');
+		let host = localStorage.getItem('__restaurants_userscript.host');
+
+		if (!host) {
+			host = 'http://alpha.openrest.com';
+			localStorage.setItem('__restaurants_userscript.host', host);
+		}
+
+		iframe.src = iframe.src.replace('https://restaurants.wix.com', host);
 
 		numIframesReplaced++;
 
