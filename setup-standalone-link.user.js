@@ -1,7 +1,9 @@
 // ==UserScript==
 // @version      1.0.0
+// @author       Wix Restaurants
 // @name         Setup Standalone Link
-// @match        http://*/*
+// @match        http://alpha.openrest.com/*
+// @match        https://restaurants.wix.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_openInTab
 // ==/UserScript==
