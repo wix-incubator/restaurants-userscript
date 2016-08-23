@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.9
+// @version        1.10
 // ==/UserScript==
 
 var numIframesReplaced = 0;
@@ -57,7 +57,7 @@ function onDOMSubtreeModified() {
 		});
 
 	if (iframe) {
-		let host = localStorage.getItem('__restaurants_userscript.host');
+		var host = localStorage.getItem('__restaurants_userscript.host');
 
 		if (!host) {
 			host = 'http://alpha.openrest.com';
