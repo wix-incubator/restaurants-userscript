@@ -1,4 +1,5 @@
 // ==UserScript==
+// @version      1.0.0
 // @name         Setup Standalone Link
 // @match        http://*/*
 // @grant        GM_xmlhttpRequest
@@ -41,8 +42,9 @@
         });
     }
 
-    // TODO: Only on orders! and only editor
-    if ((unsafeWindow.full) && (unsafeWindow.full.restaurant) && (unsafeWindow.full.restaurant.id) && (unsafeWindow.Wix)) {
+    if ((unsafeWindow.full) && (unsafeWindow.full.restaurant) && (unsafeWindow.full.restaurant.id) &&
+        (unsafeWindow.Wix) && (unsafeWindow.WixInstance.getPermissions() === 'owner') &&
+        (unsafeWindow.WixInstance.getAppId() === '13e8d036-5516-6104-b456-c8466db39542' /* orders */)) {
         const {locale, title, id} = unsafeWindow.full.restaurant;
 
         let componentInfo = null;
