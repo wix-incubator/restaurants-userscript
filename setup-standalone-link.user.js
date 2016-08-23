@@ -1,6 +1,7 @@
 // ==UserScript==
 // @version      1.0.0
 // @author       Wix Restaurants
+// @description  Sets all that is needed to open the restaurant's online ordering in standalone mode using 'alias'.
 // @name         Setup Standalone Link
 // @match        http://alpha.openrest.com/*
 // @match        https://restaurants.wix.com/*
