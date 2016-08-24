@@ -1,5 +1,5 @@
 // ==UserScript==
-// @version      1.0.0
+// @version      1.0.1
 // @author       Wix Restaurants
 // @description  Sets all that is needed to open the restaurant's online ordering in standalone mode using 'alias'.
 // @name         Setup Standalone Link
@@ -48,7 +48,7 @@
     if ((unsafeWindow.full) && (unsafeWindow.full.restaurant) && (unsafeWindow.full.restaurant.id) &&
         (unsafeWindow.Wix) && (unsafeWindow.WixInstance.getPermissions() === 'owner') &&
         (unsafeWindow.WixInstance.getAppId() === '13e8d036-5516-6104-b456-c8466db39542' /* orders */)) {
-        const {locale, title, id} = unsafeWindow.full.restaurant;
+        const {locale, title, id, restAlias} = unsafeWindow.full.restaurant;
 
         let componentInfo = null;
         unsafeWindow.Wix.getComponentInfo(function(e) {
@@ -60,7 +60,7 @@
 
         const button = $("<div style='position:fixed;z-index:10000000;top:0px;left:0px;width:20px;height:20px;background:green;text-align:center;line-height:20px;color:white;box-shadow:1px 1px 1px rgba(0,0,0,0.5);cursor:pointer;border-radius:50%'>M</div>").appendTo($(unsafeWindow.body));
         button.on('click', () => {
-            const alias = unsafeWindow.prompt("Please enter alias for restaurant '" + title[locale]+ "':","");
+            const alias = restAlias || unsafeWindow.prompt("Please enter alias for restaurant '" + title[locale]+ "':","");
 
             if (alias) {
                 request({type: 'get_organization', organizationId: id}).then(res => {
