@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.10
+// @version        1.11
 // ==/UserScript==
 
 var numIframesReplaced = 0;
@@ -61,7 +61,13 @@ function onDOMSubtreeModified() {
 
 		if (!host) {
 			host = 'http://alpha.openrest.com';
-			localStorage.setItem('__restaurants_userscript.host', host);
+
+			// Had to place this in a try..catch since Safari started throwing
+			// `QuotaExceededError: DOM Exception 22` errors.
+			//
+			try {
+				localStorage.setItem('__restaurants_userscript.host', host);
+			} catch (err) { }
 		}
 
 		iframe.src = iframe.src.replace('https://restaurants.wix.com', host);
