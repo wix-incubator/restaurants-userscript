@@ -1,5 +1,5 @@
 // ==UserScript==
-// @version      1.0.3
+// @version      1.0.4
 // @author       Wix Restaurants
 // @description  Sets all that is needed to open the restaurant's online ordering in standalone mode using 'alias'.
 // @name         Setup Standalone Link
@@ -45,10 +45,13 @@
         });
     }
 
-    if ((unsafeWindow.full) && (unsafeWindow.full.restaurant) && (unsafeWindow.full.restaurant.id) &&
+    const full = unsafeWindow.full || {};
+    const organization = full.restaurant || full.chain;
+
+    if ((organization.id) &&
         (unsafeWindow.Wix) && (unsafeWindow.WixInstance.getPermissions() === 'owner') &&
         (unsafeWindow.WixInstance.getAppId() === '13e8d036-5516-6104-b456-c8466db39542' /* orders */)) {
-        let {locale, title, id, alias} = unsafeWindow.full.restaurant;
+        let {locale, title, id, alias} = organization;
 
         let componentInfo = null;
         unsafeWindow.Wix.getComponentInfo(function(e) {
@@ -62,7 +65,7 @@
         button.on('click', () => {
             
             if (!alias) {
-                alias = unsafeWindow.prompt("Please enter alias for restaurant '" + title[locale]+ "':","");
+                alias = unsafeWindow.prompt("Please enter alias for organization '" + title[locale]+ "':","");
             }
 
             if (alias) {
