@@ -13,7 +13,7 @@
     'use strict';
 
     const request = (params) => {
-        return fetch('https://api.openrest.com/v1.1', {
+        return fetch('https://api.wixrestaurants.com/v1.1', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
