@@ -33,7 +33,7 @@
         const appId = unsafeWindow.window.WixInstance.getAppId();
         const instance = unsafeWindow.WixInstance.getInstance();
 
-        return fetch('https://auth.openrest.com/v1.0', {
+        return fetch('https://auth.wixrestaurants.com/v1.0', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
