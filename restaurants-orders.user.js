@@ -60,7 +60,7 @@ function onDOMSubtreeModified() {
 		var host = localStorage.getItem('__restaurants_userscript.host');
 
 		if (!host) {
-			host = 'http://alpha.openrest.com';
+			host = 'http://alpha.wixrestaurants.com';
 
 			// Had to place this in a try..catch since Safari started throwing
 			// `QuotaExceededError: DOM Exception 22` errors.
