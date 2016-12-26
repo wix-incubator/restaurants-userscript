@@ -51,7 +51,7 @@ function onDOMSubtreeModified() {
 	var iframe;
 	[].slice.call(document.querySelectorAll('iframe'))
 		.forEach(function (currentIframe) {
-			if (currentIframe.src.indexOf('https://restaurants.wix.com') === 0) {
+			if (currentIframe.src.indexOf('https://apps.wixrestaurants.com') === 0) {
 				iframe = currentIframe;
 			}
 		});
@@ -70,7 +70,7 @@ function onDOMSubtreeModified() {
 			} catch (err) { }
 		}
 
-		iframe.src = iframe.src.replace('https://restaurants.wix.com', host);
+		iframe.src = iframe.src.replace('https://apps.wixrestaurants.com', host);
 
 		numIframesReplaced++;
 
