@@ -3,7 +3,7 @@
 // @author       Wix Restaurants
 // @description  Sets all that is needed to open the restaurant's online ordering in standalone mode using 'alias'.
 // @name         Setup Standalone Link
-// @match        http://alpha.openrest.com/*
+// @match        http://alpha.wixrestaurants.com/*
 // @match        https://apps.wixrestaurants.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_openInTab
