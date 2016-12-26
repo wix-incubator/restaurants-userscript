@@ -1,10 +1,10 @@
 // ==UserScript==
-// @version      1.0.4
+// @version      1.0.5
 // @author       Wix Restaurants
 // @description  Sets all that is needed to open the restaurant's online ordering in standalone mode using 'alias'.
 // @name         Setup Standalone Link
 // @match        http://alpha.openrest.com/*
-// @match        https://restaurants.wix.com/*
+// @match        https://apps.wixrestaurants.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_openInTab
 // ==/UserScript==
@@ -80,7 +80,7 @@
                 }).then(res => {
                     return request({type:'set_app_mapping', appId:{platform:'com.openrest', id:alias}, organizationId:id, accessToken});
                 }).then(res => {
-                    GM_openInTab('https://restaurants.wix.com/?type=wixorders.client.mobile.standalone&restaurantAlias='+alias+'&restaurantSource=&restaurantPlatform=', {active:true});
+                    GM_openInTab('https://apps.wixrestaurants.com/?type=wixorders.client.mobile.standalone&restaurantAlias='+alias+'&restaurantSource=&restaurantPlatform=', {active:true});
                 }).catch(e => {
                     alert(e.toString());
                 });
