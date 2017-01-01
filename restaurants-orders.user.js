@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Restaurants Orders
 // @match http://*/*
-// @version        1.12
+// @version        1.13
 // ==/UserScript==
 
 var numIframesReplaced = 0;
@@ -58,8 +58,9 @@ function onDOMSubtreeModified() {
 
 	if (iframe) {
 		var host = localStorage.getItem('__restaurants_userscript.host');
-
-		if (!host) {
+		
+		// migrating older script verstion, TODO - remove in Febuary
+		if (!host || host === 'http://alpha.openrest.com') {
 			host = 'http://alpha.wixrestaurants.com';
 
 			// Had to place this in a try..catch since Safari started throwing
