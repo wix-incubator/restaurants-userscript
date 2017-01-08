@@ -28,6 +28,7 @@ function setLogMessage(text, color) {
 			'color: ' + color + ';' +
 			'z-index: 1000000;' +
 			'padding: 7px;' +
+			'pointer-events: none;' +
 		'}'
 	));
 
