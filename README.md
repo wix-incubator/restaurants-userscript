@@ -15,3 +15,5 @@ IE:
 * Click "Add extension..." in the bottom left of the pane
 * Enter the UserScript's URL
 * Now go to the page(s) it applies to and you'll see your script in action
+
+Edge: I wasn't able to install it, but appeareantly Tampermonkey added [suuport for Edge](https://tampermonkey.net/?ext=dhdg&browser=edge).
