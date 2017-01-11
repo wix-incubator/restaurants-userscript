@@ -16,4 +16,4 @@ IE:
 * Enter the UserScript's URL
 * Now go to the page(s) it applies to and you'll see your script in action
 
-Edge: I wasn't able to install it, but appeareantly Tampermonkey added [suuport for Edge](https://tampermonkey.net/?ext=dhdg&browser=edge).
+Edge: I wasn't able to install it, but apparently Tampermonkey added [suuport for Edge](https://tampermonkey.net/?ext=dhdg&browser=edge).
