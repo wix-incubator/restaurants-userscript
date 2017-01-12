@@ -18,7 +18,11 @@ IE:
 
 Edge: I wasn't able to install it, but apparently Tampermonkey added [suuport for Edge](https://tampermonkey.net/?ext=dhdg&browser=edge).
 
-## https
+---
+
+## restaurants-orders
+
+### https
 
 Chrome: To test a site served via https you'll need to first open the site then enable loading of unsafe scripts:
 
