@@ -17,3 +17,9 @@ IE:
 * Now go to the page(s) it applies to and you'll see your script in action
 
 Edge: I wasn't able to install it, but apparently Tampermonkey added [suuport for Edge](https://tampermonkey.net/?ext=dhdg&browser=edge).
+
+## https
+
+Chrome: To test a site served via https you'll need to first open the site then enable loading of unsafe scripts:
+
+![Load Unsafe Scripts](./image.png)
