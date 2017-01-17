@@ -2,7 +2,7 @@
 // @name           Restaurants Orders
 // @match http://*/*
 // @match https://*/*
-// @version        1.14
+// @version        1.15
 // ==/UserScript==
 
 var numIframesReplaced = 0;
@@ -53,14 +53,16 @@ function onDOMSubtreeModified() {
 	var iframe;
 	[].slice.call(document.querySelectorAll('iframe'))
 		.forEach(function (currentIframe) {
-			if (currentIframe.src.indexOf('https://apps.wixrestaurants.com') === 0) {
+			var src = currentIframe.src;
+			if (src.indexOf('https://apps.wixrestaurants.com') === 0 &&
+			    src.indexOf('type=backoffice') === -1) {
 				iframe = currentIframe;
 			}
 		});
 
 	if (iframe) {
 		var host = localStorage.getItem('__restaurants_userscript.host');
-		
+
 		// migrating older script verstion, TODO - remove in Febuary
 		if (!host || host === 'http://alpha.openrest.com') {
 			host = 'http://alpha.wixrestaurants.com';
