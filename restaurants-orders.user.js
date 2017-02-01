@@ -2,10 +2,11 @@
 // @name           Restaurants Orders
 // @match http://*/*
 // @match https://*/*
-// @version        1.15
+// @version        1.16
 // ==/UserScript==
 
-var numIframesReplaced = 0;
+var numIframesReplaced = 0,
+	betaValue;
 
 function setLogMessage(text, color) {
 	color = color || 'black';
@@ -46,7 +47,17 @@ function setLogMessage(text, color) {
 }
 
 function updateLogMessage() {
-	setLogMessage('WixRestaurants userscript v' + GM_info.script.version + ' (iframes: ' + numIframesReplaced + ')');
+	var message = 'WixRestaurants userscript v' + GM_info.script.version + ' (';
+
+	message += 'iframes: ' + numIframesReplaced;
+
+	if (betaValue !== undefined) {
+		message += ', beta: ' + betaValue;
+	}
+
+	message += ')';
+
+	setLogMessage(message);
 }
 
 function onDOMSubtreeModified() {
@@ -55,7 +66,7 @@ function onDOMSubtreeModified() {
 		.forEach(function (currentIframe) {
 			var src = currentIframe.src;
 			if (src.indexOf('https://apps.wixrestaurants.com') === 0 &&
-			    src.indexOf('type=backoffice') === -1) {
+				src.indexOf('type=backoffice') === -1) {
 				iframe = currentIframe;
 			}
 		});
@@ -91,9 +102,37 @@ function addEventListener() {
 	document.body.addEventListener('DOMSubtreeModified', onDOMSubtreeModified, false);
 }
 
+function determineBetaValue() {
+	let iframe = document.createElement('iframe');
+	iframe.style.opacity = '0';
+	iframe.style.pointerEvents = 'none';
+	iframe.style.position = 'fixed';
+	iframe.style.width = '1px';
+	iframe.style.height = '1px';
+	iframe.style.left = '-10px';
+	iframe.style.top = '-10px';
+	iframe.src = location.protocol + '//apps.wixrestaurants.com/beta';
+	document.body.appendChild(iframe);
+
+	setTimeout(function () {
+		window.addEventListener('message', function (e) {
+			try {
+				let data = JSON.parse(e.data);
+				if (data.cmd === 'getValueResponse') {
+					betaValue = data.params;
+					updateLogMessage();
+				}
+			} catch (err) {}
+		});
+
+		iframe.contentWindow.postMessage(JSON.stringify({cmd: 'getValue'}), '*');
+	}, 1000);
+}
+
 function init() {
 	addEventListener();
 	updateLogMessage();
+	determineBetaValue();
 }
 
 if (location.hostname.match('.*wix\.com') ||
