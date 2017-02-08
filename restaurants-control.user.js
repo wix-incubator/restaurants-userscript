@@ -1,5 +1,5 @@
 // ==UserScript==
-// @version      1.0.0
+// @version      1.0.1
 // @author       Wix Restaurants
 // @description  Enables i18n debug mode where tokens are visible.
 // @name         Wix Restaurants Control
