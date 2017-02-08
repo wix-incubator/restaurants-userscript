@@ -25,7 +25,7 @@
         shown = true;
 
         $('#___updatefileters___').detach();
-        const toolbar = $('<div>', {id:'___updatefileters___'}).css({position: 'fixed', top: '0px', padding: '12px 0px', zIndex: '10000', width: '100%', boxShadow: '1px 0px 11px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'white', flexDirection:'column'});
+        const toolbar = $('<div>', {id:'___updatefileters___'}).css({position: 'fixed', top: '0px', padding: '12px 0px', zIndex: '10000', width: '100%', boxShadow: '1px 0px 11px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'white', flexDirection:'column', direction: 'ltr'});
         toolbar.insertBefore($('.mainDiv'));
 
         const restaurantId = unsafeWindow.full.restaurant.id;
@@ -70,7 +70,7 @@
         $('#___updatefileters___').detach();
     }
 
-    GM_registerMenuCommand('Update Filters', () => {
+    GM_registerMenuCommand('Open Rest Control', () => {
         show();
     }, 'R');
 
