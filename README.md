@@ -24,6 +24,10 @@ Edge: I wasn't able to install it, but apparently Tampermonkey added [suuport fo
 
 ### https
 
-Chrome: To test a site served via https you'll need to first open the site then enable loading of unsafe scripts:
+To test a site served via https you have two options:
+
+Option 1: Open the website while the userscript is running, inside the site's local-storage find an entry whose key is "__restaurants_userscript.host" and change the protocol in its value to "https"  (also don't forget to run the local dev server in https mode)
+
+Option 2: Open the website then enable loading of unsafe scripts:
 
 ![Load Unsafe Scripts](./image.png)
