@@ -2,7 +2,7 @@
 // @name           Restaurants Orders
 // @match http://*/*
 // @match https://*/*
-// @version        1.16
+// @version        1.17
 // ==/UserScript==
 
 var numIframesReplaced = 0,
@@ -76,7 +76,7 @@ function onDOMSubtreeModified() {
 
 		// migrating older script verstion, TODO - remove in Febuary
 		if (!host || host === 'http://alpha.openrest.com') {
-			host = 'http://alpha.wixrestaurants.com';
+			host = location.protocol + '//alpha.wixrestaurants.com';
 
 			// Had to place this in a try..catch since Safari started throwing
 			// `QuotaExceededError: DOM Exception 22` errors.
