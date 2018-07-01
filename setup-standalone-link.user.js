@@ -1,5 +1,5 @@
 // ==UserScript==
-// @version      1.1.0
+// @version      1.1.1
 // @author       Wix Restaurants
 // @description  Sets all that is needed to open the restaurant's online ordering in standalone mode using 'alias'.
 // @name         Setup Standalone Link
@@ -76,6 +76,7 @@
                     organization.externalIds['com.wix.styles.compId'] = componentInfo.compId;
                     organization.externalIds['com.wix.styles.pageId'] = componentInfo.pageId;
                     return fetch(`https://api.wixrestaurants.com/v2/organizations/${id}`, {
+                        method: 'POST',
                         headers: new Headers({
                             'Authorization': `Bearer ${accessToken}`, 
                             'Content-Type': 'application/json'
