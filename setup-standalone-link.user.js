@@ -1,5 +1,5 @@
 // ==UserScript==
-// @version      1.1.1
+// @version      1.2.0
 // @author       Wix Restaurants
 // @description  Sets all that is needed to open the restaurant's online ordering in standalone mode using 'alias'.
 // @name         Setup Standalone Link
@@ -33,16 +33,14 @@
         const appId = unsafeWindow.window.WixInstance.getAppId();
         const instance = unsafeWindow.WixInstance.getInstance();
 
-        return fetch('https://auth.wixrestaurants.com/v1.0', {
+        return fetch('https://auth.wixrestaurants.com/v2/com.wix/access_token', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({type:'wix.loginInstance', instance, appKey:appId})
-        }).then(r => r.json()).then(res => {
-            return res.value;
-        });
+            body: JSON.stringify({instance})
+        }).then(r => r.json());
     }
 
     const full = unsafeWindow.full || {};
@@ -63,24 +61,23 @@
 
         const button = $("<div style='position:fixed;z-index:10000000;top:0px;left:0px;width:20px;height:20px;background:green;text-align:center;line-height:20px;color:white;box-shadow:1px 1px 1px rgba(0,0,0,0.5);cursor:pointer;border-radius:50%'>M</div>").appendTo($(unsafeWindow.body));
         button.on('click', () => {
-            
             if (!alias) {
                 alias = unsafeWindow.prompt("Please enter alias for organization '" + title[locale]+ "':","");
             }
 
             if (alias) {
-                fetch(`https://api.wixrestaurants.com/v2/organizations/${id}`).then(organization => {
+                fetch(`https://api.wixrestaurants.com/v2/organizations/${id}`).then(res => res.json()).then(organization => {
                     organization.externalIds = organization.externalIds || {};
                     organization.externalIds['com.wix.styles.appId'] = unsafeWindow.window.WixInstance.getAppId();
                     organization.externalIds['com.wix.styles.instanceId'] = unsafeWindow.WixInstance.getInstanceId();
                     organization.externalIds['com.wix.styles.compId'] = componentInfo.compId;
                     organization.externalIds['com.wix.styles.pageId'] = componentInfo.pageId;
                     return fetch(`https://api.wixrestaurants.com/v2/organizations/${id}`, {
-                        method: 'POST',
+                        method: 'PUT',
                         headers: new Headers({
-                            'Authorization': `Bearer ${accessToken}`, 
+                            'Authorization': `Bearer ${accessToken}`,
                             'Content-Type': 'application/json'
-                        }), 
+                        }),
                         body: JSON.stringify(organization)
                     });
                 }).then(res => {
@@ -96,3 +93,4 @@
     }
     // Your code here...
 })();
+
